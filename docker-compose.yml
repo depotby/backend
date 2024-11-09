@@ -1,0 +1,31 @@
+services:
+  app:
+    image: depotby/backend:development
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    environment:
+      RAILS_DATABASE_USERNAME: postgres
+      RAILS_DATABASE_PASSWORD: password
+      RAILS_DATABASE_HOST: postgresql
+      RAILS_DATABASE_PORT: 5432
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/rails
+    command: bundle exec rails s -b 0.0.0.0
+
+  postgresql:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      PGDATA: /data
+    ports:
+      - "15432:5432"
+    volumes:
+      - postgresql:/data
+
+volumes:
+  postgresql:
