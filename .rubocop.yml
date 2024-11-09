@@ -3,3 +3,7 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 
 Bundler/OrderedGems:
   Enabled: true
+
+Layout/LineLength:
+  Enabled: true
+  Max: 100
