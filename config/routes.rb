@@ -14,5 +14,13 @@ Rails.application.routes.draw do
       put "authentications", action: :refresh
       delete "authentications", action: :destroy
     end
+
+    controller :addresses do
+      get "addresses", action: :index
+      get "addresses/:id", action: :show
+      post "addresses", action: :create
+      put "addresses/:id", action: :update
+      delete "addresses/:id", action: :destroy
+    end
   end
 end

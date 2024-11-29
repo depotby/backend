@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles
   has_many :abilities, through: :roles
+  has_many :addresses, dependent: :destroy
 
   normalizes :email, with: ->(email) { email.downcase }
 
