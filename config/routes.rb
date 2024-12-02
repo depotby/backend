@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
+  namespace :admin do
+    controller :authentications do
+      get "authentications", action: :index
+      post "authentications", action: :create
+      put "authentications", action: :refresh
+      delete "authentications", action: :destroy
+    end
+  end
+
   namespace :v1 do
     controller :user do
       get "user", action: :show

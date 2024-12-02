@@ -6,17 +6,18 @@ en:
           wrong_email_format: "is not a valid email"
 
   controllers:
+    concerns:
+      authenticatable:
+        create:
+          error: "wrong email or password"
+        refresh:
+          error: "authentication not found"
     v1:
       authorization:
         authorization_required: "Authorization required"
       user:
         create:
           error: "error during user creation"
-      authentications:
-        create:
-          error: "wrong email or password"
-        refresh:
-          error: "authentication not found"
       addresses:
         create:
           error: "error during address creation"

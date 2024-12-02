@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :abilities, through: :roles
   has_many :addresses, dependent: :destroy
 
+  enum :account_type, { regular: 0, employee: 1 }
+
   normalizes :email, with: ->(email) { email.downcase }
 
   validates :email, presence: true, uniqueness: true,

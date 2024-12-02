@@ -1,16 +1,16 @@
-class V1::AuthenticationsController < V1Controller
+class Admin::AuthenticationsController < AdminController
   include Authenticatable
 
-  before_action :authorization, only: [ :index, :destroy ]
+  skip_before_action :authorization, only: [ :create, :refresh ]
   before_action :set_authentication, only: [ :destroy ]
 
   private
 
   def access_type
-    :regular
+    :admin
   end
 
   def authentication_allowed?
-    !!@user
+    !!@user&.employee?
   end
 end
