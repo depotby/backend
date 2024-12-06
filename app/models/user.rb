@@ -13,4 +13,12 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true,
             format: { with: URI::MailTo::EMAIL_REGEXP,
                       message: I18n.t("models.user.validations.email.wrong_email_format") }
+
+  def able?(name)
+    abilities_names.include?(name)
+  end
+
+  def abilities_names
+    @abilities_names ||= abilities.distinct.pluck(:name)
+  end
 end

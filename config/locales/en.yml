@@ -12,6 +12,10 @@ en:
           error: "wrong email or password"
         refresh:
           error: "authentication not found"
+    admin:
+      check_ability:
+        errors:
+          not_allowed: "not allowed"
     v1:
       authorization:
         authorization_required: "Authorization required"
