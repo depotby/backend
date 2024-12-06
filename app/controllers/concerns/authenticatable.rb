@@ -3,6 +3,7 @@ module Authenticatable
 
   def index
     @authentications = Current.user.authentications.where(access_type:)
+    render template: "concerns/authenticatable/index"
   end
 
   def create
@@ -10,6 +11,7 @@ module Authenticatable
 
     if authentication_allowed? && @user.authenticate(authentication_params[:password])
       @authentication = @user.authentications.create(user_agent:, access_type:)
+      render template: "concerns/authenticatable/create", status: :created
     else
       render json: { message: I18n.t("controllers.concerns.authenticatable.create.error") },
              status: :unauthorized
@@ -23,7 +25,7 @@ module Authenticatable
     if authentication_allowed?
       @authentication = @user.authentications.create(user_agent:, access_type:)
       authentication.destroy
-      render :create
+      render template: "concerns/authenticatable/create", status: :created
     else
       render json: { message: I18n.t("controllers.concerns.authenticatable.refresh.error") },
              status: :unauthorized
