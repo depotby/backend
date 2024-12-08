@@ -5,6 +5,7 @@ gem "bootsnap", require: false
 gem "browser"
 gem "image_processing", "~> 1.2"
 gem "jbuilder"
+gem "pagy"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "rack-cors"

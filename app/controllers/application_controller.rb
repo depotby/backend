@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::API
-  private
-
   def authorization
     Current.authentication = Authentication.find_by_token_for(:authorization, authorization_header)
 
