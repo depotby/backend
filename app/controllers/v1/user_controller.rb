@@ -26,6 +26,7 @@ class V1::UserController < V1Controller
   end
 
   def user_params
-    params.expect(user: [ :email, :password, :password_confirmation ])
+    params.expect(user: [ :first_name, :last_name, :middle_name, :email, :password,
+                          :password_confirmation ])
   end
 end

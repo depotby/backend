@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   normalizes :email, with: ->(email) { email.downcase }
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true,
             format: { with: URI::MailTo::EMAIL_REGEXP,
                       message: I18n.t("models.user.validations.email.wrong_email_format") }
