@@ -1,0 +1,9 @@
+production:
+  authentication:
+    access_ttl: 300 # 5 minutes
+    refresh_ttl: 2629746 # 1 month
+
+development:
+  authentication:
+    access_ttl: 43200 # 8 hours
+    refresh_ttl: 2629746 # 1 month
