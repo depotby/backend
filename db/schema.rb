@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_20_043714) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_29_110137) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -75,6 +75,54 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_20_043714) do
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
+  create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "uri_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uri_name"], name: "index_categories_on_uri_name", unique: true
+  end
+
+  create_table "category_properties", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "category_id", null: false
+    t.string "name", null: false
+    t.string "uri_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id", "name"], name: "index_category_properties_on_category_id_and_name", unique: true
+    t.index ["category_id"], name: "index_category_properties_on_category_id"
+    t.index ["uri_name"], name: "index_category_properties_on_uri_name", unique: true
+  end
+
+  create_table "category_property_options", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "category_property_id", null: false
+    t.string "variant", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_property_id", "variant"], name: "idx_on_category_property_id_variant_a122ee2fdf", unique: true
+    t.index ["category_property_id"], name: "index_category_property_options_on_category_property_id"
+  end
+
+  create_table "product_category_property_options", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "product_id", null: false
+    t.uuid "category_property_option_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_property_option_id"], name: "idx_on_category_property_option_id_4e6b0c03e4"
+    t.index ["product_id", "category_property_option_id"], name: "idx_on_product_id_category_property_option_id_0e7999931f", unique: true
+    t.index ["product_id"], name: "index_product_category_property_options_on_product_id"
+  end
+
+  create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "category_id", null: false
+    t.string "name"
+    t.string "uri_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["uri_name"], name: "index_products_on_uri_name", unique: true
+  end
+
   create_table "role_abilities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "role_id", null: false
     t.uuid "ability_id", null: false
@@ -116,6 +164,11 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_20_043714) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
   add_foreign_key "authentications", "users"
+  add_foreign_key "category_properties", "categories"
+  add_foreign_key "category_property_options", "category_properties"
+  add_foreign_key "product_category_property_options", "category_property_options"
+  add_foreign_key "product_category_property_options", "products"
+  add_foreign_key "products", "categories"
   add_foreign_key "role_abilities", "abilities"
   add_foreign_key "role_abilities", "roles"
   add_foreign_key "user_roles", "roles"
