@@ -17,7 +17,7 @@ class Ability < ApplicationRecord
   has_many :role_abilities, dependent: :destroy
   has_many :roles, through: :role_abilities
 
-  validates :name, uniqueness: true
+  validates :name, presence: true, uniqueness: true
 
   def self.available
     ABILITIES
