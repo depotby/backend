@@ -12,11 +12,7 @@ class Ability < ApplicationRecord
                  CATEGORY_PROPERTY:CREATE
                  CATEGORY_PROPERTY:READ
                  CATEGORY_PROPERTY:UPDATE
-                 CATEGORY_PROPERTY:DELETE
-                 CATEGORY_PROPERTY_OPTION:CREATE
-                 CATEGORY_PROPERTY_OPTION:READ
-                 CATEGORY_PROPERTY_OPTION:UPDATE
-                 CATEGORY_PROPERTY_OPTION:DELETE].freeze
+                 CATEGORY_PROPERTY:DELETE].freeze
 
   has_many :role_abilities, dependent: :destroy
   has_many :roles, through: :role_abilities
