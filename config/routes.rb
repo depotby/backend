@@ -21,7 +21,10 @@ Rails.application.routes.draw do
 
       controller :roles do
         get "roles", action: :index
+        post "roles", action: :create
         get "roles/:id", action: :show
+        put "roles/:id", action: :update
+        delete "roles/:id", action: :destroy
       end
     end
 

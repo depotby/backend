@@ -16,6 +16,13 @@ en:
       check_ability:
         errors:
           not_allowed: "not allowed"
+      roles:
+        create:
+          errors:
+            creation: "error during role creation"
+        update:
+          errors:
+            update: "error during role update"
     v1:
       authorization:
         authorization_required: "Authorization required"
