@@ -18,6 +18,11 @@ Rails.application.routes.draw do
         get "users", action: :index
         get "users/:id", action: :show
       end
+
+      controller :roles do
+        get "roles", action: :index
+        get "roles/:id", action: :show
+      end
     end
 
     namespace :v1 do
