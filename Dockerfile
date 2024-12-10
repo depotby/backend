@@ -5,6 +5,8 @@ ARG RUBY_VERSION=3.3.6
 
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS development
 
+ENV RSWAG_DRY_RUN=0
+
 WORKDIR /rails
 
 RUN apt-get update -qq && \

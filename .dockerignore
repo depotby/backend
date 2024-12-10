@@ -32,3 +32,8 @@
 
 # Custom directories
 /.idea
+/spec
+/swagger
+
+# Custom files
+/.rspec

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
+  unless Rails.env.production?
+    mount Rswag::Ui::Engine => "/swagger"
+    mount Rswag::Api::Engine => "/swagger"
+  end
+
   scope defaults: { format: :json } do
     namespace :admin do
       controller :authentications do

@@ -10,6 +10,7 @@ gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "rack-cors"
 gem "rails", "~> 8.0.0"
+gem "rswag"
 gem "solid_cable"
 gem "solid_cache"
 gem "solid_queue"
@@ -20,4 +21,9 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "faker"
   gem "rubocop-rails-omakase", require: false
+end
+
+group :test do
+  gem "factory_bot_rails"
+  gem "rspec-rails"
 end
