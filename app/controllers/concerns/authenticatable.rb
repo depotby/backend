@@ -13,7 +13,8 @@ module Authenticatable
       @authentication = @user.authentications.create(user_agent:, access_type:)
       render template: "concerns/authenticatable/create", status: :created
     else
-      render json: { message: I18n.t("controllers.concerns.authenticatable.create.error") },
+      render json: { status: 401,
+                     error: I18n.t("controllers.concerns.authenticatable.create.error") },
              status: :unauthorized
     end
   end
@@ -27,7 +28,8 @@ module Authenticatable
       authentication.destroy
       render template: "concerns/authenticatable/create", status: :created
     else
-      render json: { message: I18n.t("controllers.concerns.authenticatable.refresh.error") },
+      render json: { status: 401,
+                     error: I18n.t("controllers.concerns.authenticatable.refresh.error") },
              status: :unauthorized
     end
   end

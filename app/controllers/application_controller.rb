@@ -5,7 +5,8 @@ class ApplicationController < ActionController::API
 
     return if Current.user
 
-    render json: { message: I18n.t("controllers.v1.authorization.authorization_required") },
+    render json: { status: 401,
+                   error: I18n.t("controllers.application.authorization.unauthorized") },
            status: :unauthorized
   end
 

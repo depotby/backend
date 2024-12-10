@@ -17,8 +17,10 @@ class Admin::RolesController < AdminController
     if @role.save
       render :show, status: :created
     else
-      render json: { message: I18n.t("controllers.admin.roles.create.errors.creation"),
-                     errors: @role.errors }, status: :unprocessable_entity
+      render json: { status: 422,
+                     error: I18n.t("controllers.admin.roles.create.errors.creation"),
+                     fields: @role.errors },
+             status: :unprocessable_entity
     end
   end
 
@@ -29,8 +31,10 @@ class Admin::RolesController < AdminController
     if @role.update(role_params)
       render :show
     else
-      render json: { message: I18n.t("controllers.admin.roles.update.errors.update"),
-                     errors: @role.errors }, status: :unprocessable_entity
+      render json: { status: 422,
+                     error: I18n.t("controllers.admin.roles.update.errors.update"),
+                     fields: @role.errors },
+             status: :unprocessable_entity
     end
   end
 
@@ -42,9 +46,8 @@ class Admin::RolesController < AdminController
     ability = Ability.find_by(name: switch_ability_params)
 
     unless ability
-      return render json: {
-        message: I18n.t("controllers.admin.roles.switch_ability.errors.unknown_ability")
-      }, status: :unprocessable_entity
+      error_key = "controllers.admin.roles.switch_ability.errors.unknown_ability"
+      return render json: { status: 422, error: I18n.t(error_key) }, status: :unprocessable_entity
     end
 
     if @role.abilities.exists?(ability.id)

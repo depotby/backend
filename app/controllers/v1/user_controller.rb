@@ -11,7 +11,9 @@ class V1::UserController < V1Controller
     if @user.save
       render :show, status: :created
     else
-      render json: { message: I18n.t("controllers.v1.user.create.error"), errors: @user.errors },
+      render json: { status: 422,
+                     error: I18n.t("controllers.v1.user.create.error"),
+                     fields: @user.errors },
              status: :unprocessable_entity
     end
   end
@@ -20,7 +22,9 @@ class V1::UserController < V1Controller
     if @user.update(user_update_params)
       render :show
     else
-      render json: { message: I18n.t("controllers.v1.user.update.error"), errors: @user.errors },
+      render json: { status: 422,
+                     error: I18n.t("controllers.v1.user.update.error"),
+                     fields: @user.errors },
              status: :unprocessable_entity
     end
   end

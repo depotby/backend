@@ -9,33 +9,34 @@ en:
     concerns:
       authenticatable:
         create:
-          error: "wrong email or password"
+          error: "Wrong mail or password"
         refresh:
-          error: "authentication not found"
+          error: "Authentication not found"
+    application:
+      authorization:
+        unauthorized: "Unauthorized"
     admin:
       check_ability:
         errors:
-          not_allowed: "not allowed"
+          forbidden: "Forbidden"
       roles:
         create:
           errors:
-            creation: "error during role creation"
+            creation: "Error during role creation"
         update:
           errors:
-            update: "error during role update"
+            update: "Error during role update"
         switch_ability:
           errors:
-            unknown_ability: "unknown ability name"
+            unknown_ability: "Unknown ability name"
     v1:
-      authorization:
-        authorization_required: "authorization required"
       user:
         create:
-          error: "error during user creation"
+          error: "Error during user creation"
         update:
-          error: "error during user update"
+          error: "Error during user update"
       addresses:
         create:
-          error: "error during address creation"
+          error: "Error during address creation"
         update:
-          error: "error during address update"
+          error: "Error during address update"

@@ -15,8 +15,9 @@ class V1::AddressesController < V1Controller
     if @address.save
       render :show, status: :created
     else
-      render json: { message: I18n.t("controllers.v1.addresses.create.error"),
-                     errors: @address.errors },
+      render json: { status: 422,
+                     error: I18n.t("controllers.v1.addresses.create.error"),
+                     fields: @address.errors },
              status: :unprocessable_entity
     end
   end
@@ -25,8 +26,9 @@ class V1::AddressesController < V1Controller
     if @address.update(address_params)
       render :show
     else
-      render json: { message: I18n.t("controllers.v1.addresses.update.error"),
-                     errors: @address.errors },
+      render json: { status: 422,
+                     error: I18n.t("controllers.v1.addresses.update.error"),
+                     fields: @address.errors },
              status: :unprocessable_entity
     end
   end
