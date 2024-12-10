@@ -25,7 +25,7 @@ en:
             update: "error during role update"
     v1:
       authorization:
-        authorization_required: "Authorization required"
+        authorization_required: "authorization required"
       user:
         create:
           error: "error during user creation"
