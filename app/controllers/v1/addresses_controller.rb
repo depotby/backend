@@ -13,7 +13,7 @@ class V1::AddressesController < V1Controller
     @address = Current.user.addresses.new(address_params)
 
     if @address.save
-      render :show, status: :created, location: @address
+      render :show, status: :created
     else
       render json: { message: I18n.t("controllers.v1.addresses.create.error"),
                      errors: @address.errors },
@@ -23,7 +23,7 @@ class V1::AddressesController < V1Controller
 
   def update
     if @address.update(address_params)
-      render :show, status: :ok, location: @address
+      render :show
     else
       render json: { message: I18n.t("controllers.v1.addresses.update.error"),
                      errors: @address.errors },
@@ -42,6 +42,7 @@ class V1::AddressesController < V1Controller
   end
 
   def address_params
-    params.expect(address: [ :name, :region ])
+    params.expect(address: [ :name, :region, :city, :zip, :street, :building, :building_section,
+                             :apartment ])
   end
 end
