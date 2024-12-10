@@ -1,1 +1,2 @@
-json.array! @authentications, partial: "authentication", as: :authentication
+json.array! @authentications, partial: "concerns/authenticatable/authentication",
+            as: :authentication
