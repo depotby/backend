@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         get "roles/:id", action: :show
         put "roles/:id", action: :update
         delete "roles/:id", action: :destroy
+        post "roles/:id/abilities", action: :switch_ability
       end
     end
 

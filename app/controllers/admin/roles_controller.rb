@@ -3,9 +3,9 @@ class Admin::RolesController < AdminController
 
   before_action -> { check_ability("ROLE:READ") }, only: %i[index show]
   before_action -> { check_ability("ROLE:CREATE") }, only: %i[create]
-  before_action -> { check_ability("ROLE:UPDATE") }, only: %i[update]
+  before_action -> { check_ability("ROLE:UPDATE") }, only: %i[update switch_ability]
   before_action -> { check_ability("ROLE:DELETE") }, only: %i[destroy]
-  before_action :set_role, only: %i[show update destroy]
+  before_action :set_role, only: %i[show update destroy switch_ability]
 
   def index
     @pagination, @roles = paginate(Role.all)
@@ -38,10 +38,27 @@ class Admin::RolesController < AdminController
     @role.destroy!
   end
 
+  def switch_ability
+    Rails.logger.info switch_ability_params
+    ability = Ability.find_by(name: switch_ability_params)
+
+    if @role.abilities.exists?(ability.id)
+      @role.abilities.destroy(ability)
+    else
+      @role.abilities << ability
+    end
+
+    render :show
+  end
+
   private
 
   def role_params
     params.expect(role: [ :name ])
+  end
+
+  def switch_ability_params
+    params.expect(:ability)
   end
 
   def set_role
