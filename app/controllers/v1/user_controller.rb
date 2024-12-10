@@ -6,7 +6,7 @@ class V1::UserController < V1Controller
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_create_params)
 
     if @user.save
       render :show, status: :created
@@ -17,6 +17,12 @@ class V1::UserController < V1Controller
   end
 
   def update
+    if @user.update(user_update_params)
+      render :show
+    else
+      render json: { message: I18n.t("controllers.v1.user.update.error"), errors: @user.errors },
+             status: :unprocessable_entity
+    end
   end
 
   private
@@ -25,8 +31,12 @@ class V1::UserController < V1Controller
     @user = Current.user
   end
 
-  def user_params
+  def user_create_params
     params.expect(user: [ :first_name, :last_name, :middle_name, :email, :password,
                           :password_confirmation ])
+  end
+
+  def user_update_params
+    params.expect(user: [ :first_name, :last_name, :middle_name ])
   end
 end

@@ -41,11 +41,26 @@ RSpec.configure do |config|
                 properties: {
                   first_name: { type: :string, example: Faker::Name.first_name },
                   last_name: { type: :string, example: Faker::Name.last_name },
+                  middle_name: { type: :string, example: Faker::Name.middle_name },
                   email: { type: :string, example: Faker::Internet.email },
                   password: { type: :string, example: 'S0meH4Rd-p4ssw0rd!' },
                   password_confirmation: { type: :string, example: 'S0meH4Rd-p4ssw0rd!' }
                 },
                 required: %i[first_name last_name email password password_confirmation]
+              }
+            },
+            required: %i[user]
+          },
+          update_user: {
+            type: :object,
+            properties: {
+              user: {
+                type: :object,
+                properties: {
+                  first_name: { type: :string, example: Faker::Name.first_name },
+                  last_name: { type: :string, example: Faker::Name.last_name },
+                  middle_name: { type: :string, example: Faker::Name.middle_name }
+                }
               }
             },
             required: %i[user]

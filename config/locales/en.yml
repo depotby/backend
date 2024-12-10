@@ -32,6 +32,8 @@ en:
       user:
         create:
           error: "error during user creation"
+        update:
+          error: "error during user update"
       addresses:
         create:
           error: "error during address creation"
