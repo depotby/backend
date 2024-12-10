@@ -79,7 +79,7 @@ describe 'Addresses API', type: :request, openapi_spec: 'v1/swagger.yaml' do
 
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
-        let(:id) { build(:address, user:).id }
+        let(:id) { Faker::Internet.uuid }
 
         after { |example| write_response_example(example, response) }
 
@@ -111,7 +111,7 @@ describe 'Addresses API', type: :request, openapi_spec: 'v1/swagger.yaml' do
 
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
-        let(:id) { create(:address, user:).id }
+        let(:id) { Faker::Internet.uuid }
         let(:address) { { address: build(:address) } }
 
         after { |example| write_response_example(example, response) }
@@ -151,7 +151,7 @@ describe 'Addresses API', type: :request, openapi_spec: 'v1/swagger.yaml' do
 
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
-        let(:id) { create(:address, user:).id }
+        let(:id) { Faker::Internet.uuid }
 
         after { |example| write_response_example(example, response) }
 

@@ -21,13 +21,12 @@ RSpec.configure do |config|
         title: 'API V1',
         version: 'v1'
       },
-      paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: '{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+              default: 'http://localhost:3000'
             }
           }
         }
@@ -91,6 +90,76 @@ RSpec.configure do |config|
               }
             },
             required: %i[address]
+          }
+        },
+        securitySchemes: {
+          authorization_header: {
+            type: :http,
+            scheme: :bearer,
+            in: :header,
+            name: 'Authorization'
+          }
+        }
+      }
+    },
+    'admin/swagger.yaml' => {
+      openapi: '3.0.1',
+      info: {
+        title: 'API V1',
+        version: 'v1'
+      },
+      servers: [
+        {
+          url: '{defaultHost}',
+          variables: {
+            defaultHost: {
+              default: 'http://localhost:3000'
+            }
+          }
+        }
+      ],
+      components: {
+        schemas: {
+          new_authentication: {
+            type: :object,
+            properties: {
+              user: {
+                type: :object,
+                properties: {
+                  email: { type: :string, example: Faker::Internet.email },
+                  password: { type: :string, example: Faker::Internet.password }
+                },
+                required: %i[email password]
+              }
+            },
+            required: %i[user]
+          },
+          refresh_authentication: {
+            type: :object,
+            properties: {
+              token: { type: :string }
+            },
+            required: %i[token]
+          },
+          role: {
+            type: :object,
+            properties: {
+              role: {
+                type: :object,
+                properties: {
+                  name: { type: :string, example: Faker::Company.department }
+                },
+                required: %i[name]
+              }
+            },
+            required: %i[role]
+          },
+          role_ability: {
+            type: :object,
+            properties: {
+              ability: { type: :string, example: Ability.available.first, enum: Ability.available }
+            },
+            required: %i[ability]
           }
         },
         securitySchemes: {

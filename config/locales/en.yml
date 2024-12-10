@@ -23,6 +23,9 @@ en:
         update:
           errors:
             update: "error during role update"
+        switch_ability:
+          errors:
+            unknown_ability: "unknown ability name"
     v1:
       authorization:
         authorization_required: "authorization required"

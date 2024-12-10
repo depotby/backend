@@ -11,7 +11,9 @@ FactoryBot.define do
       account_type { User.account_types[:employee] }
 
       factory :employee_with_all_abilities do
-        association :roles, factory: :role_with_all_abilities
+        after(:create) do |user|
+          user.roles << create(:role_with_all_abilities)
+        end
       end
     end
   end

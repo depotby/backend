@@ -39,8 +39,13 @@ class Admin::RolesController < AdminController
   end
 
   def switch_ability
-    Rails.logger.info switch_ability_params
     ability = Ability.find_by(name: switch_ability_params)
+
+    unless ability
+      return render json: {
+        message: I18n.t("controllers.admin.roles.switch_ability.errors.unknown_ability")
+      }, status: :unprocessable_entity
+    end
 
     if @role.abilities.exists?(ability.id)
       @role.abilities.destroy(ability)

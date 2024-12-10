@@ -7,8 +7,6 @@ module Paginable
   def paginate(collection)
     pagy, records = pagy(collection)
 
-    Rails.logger.info pagy.to_json
-
     pagination = {
       count: pagy.count,
       page: pagy.page,

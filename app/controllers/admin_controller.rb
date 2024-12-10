@@ -9,4 +9,8 @@ class AdminController < ApplicationController
     render json: { message: I18n.t("controllers.admin.check_ability.errors.not_allowed") },
            status: :forbidden
   end
+
+  def authentications_scope
+    Authentication.admin
+  end
 end

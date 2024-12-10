@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
   def authorization
-    Current.authentication = Authentication.find_by_token_for(:authorization, authorization_header)
+    Current.authentication = authentications_scope.find_by_token_for(:authorization,
+                                                                     authorization_header)
 
     return if Current.user
 
