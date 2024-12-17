@@ -6,10 +6,10 @@ class Admin::UsersController < AdminController
   before_action :set_user, only: %i[show]
 
   def index
-    if ordering_correct?
-      @pagination, @users = paginate(User.order(order_column: order_direction))
+    if order_correct?
+      @pagination, @users = paginate(User.order(order_param => order_direction))
     else
-      @pagination, @users = paginate(User.all)
+      @pagination, @users = paginate(User.all.order(created_at: :desc))
     end
   end
 
@@ -18,7 +18,7 @@ class Admin::UsersController < AdminController
 
   private
 
-  def orderable_params
+  def order_params
     %i[email first_name last_name account_type created_at updated_at]
   end
 

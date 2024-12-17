@@ -3,8 +3,8 @@ module Orderable
 
   private
 
-  def ordering_correct?
-    orderable_params.include?(order_param) && order_directions.include?(order_direction)
+  def order_correct?
+    order_params.include?(order_param) && order_directions.include?(order_direction)
   end
 
   def order_param

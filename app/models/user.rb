@@ -16,8 +16,6 @@ class User < ApplicationRecord
             format: { with: URI::MailTo::EMAIL_REGEXP,
                       message: I18n.t("models.user.validations.email.wrong_email_format") }
 
-  default_scope { order(created_at: :desc) }
-
   def able?(name)
     abilities_names.include?(name)
   end
