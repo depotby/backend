@@ -59,7 +59,31 @@ describe 'Authentications API', type: :request, openapi_spec: 'admin/swagger.yam
       end
     end
 
-    put 'Refresh authentication' do
+    delete 'Delete authentication' do
+      security [ authorization_header: [] ]
+
+      response 204, 'no content' do
+        let(:Authorization) do
+          create(:admin_authentication_with_all_abilities, user:).generate_token_for(:authorization)
+        end
+
+        after { |example| write_response_example(example, response) }
+
+        run_test!
+      end
+
+      response 401, 'unauthorized' do
+        let(:Authorization) { nil }
+
+        after { |example| write_response_example(example, response) }
+
+        run_test!
+      end
+    end
+  end
+
+  path '/admin/authentications/refresh' do
+    post 'Refresh authentication' do
       parameter name: :refresh_authentication, in: :body,
                 schema: { '$ref' => '#/components/schemas/refresh_authentication' }
 
@@ -80,28 +104,6 @@ describe 'Authentications API', type: :request, openapi_spec: 'admin/swagger.yam
         let(:refresh_authentication) do
           { token: nil }
         end
-
-        after { |example| write_response_example(example, response) }
-
-        run_test!
-      end
-    end
-
-    delete 'Delete authentication' do
-      security [ authorization_header: [] ]
-
-      response 204, 'no content' do
-        let(:Authorization) do
-          create(:admin_authentication_with_all_abilities, user:).generate_token_for(:authorization)
-        end
-
-        after { |example| write_response_example(example, response) }
-
-        run_test!
-      end
-
-      response 401, 'unauthorized' do
-        let(:Authorization) { nil }
 
         after { |example| write_response_example(example, response) }
 
