@@ -36,4 +36,8 @@
 /swagger
 
 # Custom files
+/.gitattributes
 /.rspec
+/.rubocop.yml
+/README.md
+/docker-compose.yml
