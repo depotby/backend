@@ -32,6 +32,14 @@ Rails.application.routes.draw do
         delete "roles/:id", action: :destroy
         post "roles/:id/abilities", action: :switch_ability
       end
+
+      controller :categories do
+        get "categories", action: :index
+        post "categories", action: :create
+        get "categories/:id", action: :show
+        put "categories/:id", action: :update
+        delete "categories/:id", action: :destroy
+      end
     end
 
     namespace :v1 do
