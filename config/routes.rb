@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       controller :authentications do
         get "authentications", action: :index
         post "authentications", action: :create
-        put "authentications", action: :refresh
+        post "authentications/refresh", action: :refresh
         delete "authentications", action: :destroy
       end
 
@@ -52,7 +52,7 @@ Rails.application.routes.draw do
       controller :authentications do
         get "authentications", action: :index
         post "authentications", action: :create
-        put "authentications", action: :refresh
+        post "authentications/refresh", action: :refresh
         delete "authentications", action: :destroy
       end
 
