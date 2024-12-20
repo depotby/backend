@@ -1,6 +1,7 @@
 class Ability < ApplicationRecord
   ABILITIES = %w[USER:READ
                  USER:UPDATE
+                 USER_TYPE:UPDATE
                  ROLE:CREATE
                  ROLE:READ
                  ROLE:UPDATE
@@ -8,11 +9,7 @@ class Ability < ApplicationRecord
                  CATEGORY:CREATE
                  CATEGORY:READ
                  CATEGORY:UPDATE
-                 CATEGORY:DELETE
-                 CATEGORY_PROPERTY:CREATE
-                 CATEGORY_PROPERTY:READ
-                 CATEGORY_PROPERTY:UPDATE
-                 CATEGORY_PROPERTY:DELETE].freeze
+                 CATEGORY:DELETE].freeze
 
   has_many :role_abilities, dependent: :destroy
   has_many :roles, through: :role_abilities
