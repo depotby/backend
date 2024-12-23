@@ -6,8 +6,8 @@ class AdminController < ApplicationController
   def check_ability(name)
     return if Current.user.able?(name)
 
-    render json: { error: 403,
-                   message: I18n.t("controllers.admin.check_ability.errors.forbidden") },
+    render json: { status: 403,
+                   error: I18n.t("controllers.admin.check_ability.errors.forbidden") },
            status: :forbidden
   end
 
