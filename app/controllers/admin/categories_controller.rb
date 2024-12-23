@@ -58,6 +58,6 @@ class Admin::CategoriesController < AdminController
   end
 
   def set_category
-    @category = Category.find(params[:id])
+    @category = Category.find(params.expect(:id))
   end
 end
