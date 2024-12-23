@@ -40,6 +40,14 @@ Rails.application.routes.draw do
         put "categories/:id", action: :update
         delete "categories/:id", action: :destroy
       end
+
+      controller :category_properties do
+        get "categories/:category_id/properties", action: :index
+        post "categories/:category_id/properties", action: :create
+        get "categories/:category_id/properties/:property_id", action: :show
+        put "categories/:category_id/properties/:property_id", action: :update
+        delete "categories/:category_id/properties/:property_id", action: :destroy
+      end
     end
 
     namespace :v1 do

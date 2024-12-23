@@ -189,6 +189,20 @@ RSpec.configure do |config|
               }
             },
             required: %i[category]
+          },
+          category_property: {
+            type: :object,
+            properties: {
+              category_property: {
+                type: :object,
+                properties: {
+                  name: { type: :string, example: 'Body color' },
+                  uri_name: { type: :string, example: 'body-color' }
+                },
+                required: %i[name uri_name]
+              }
+            },
+            required: %i[category_property]
           }
         },
         securitySchemes: {

@@ -36,6 +36,13 @@ en:
         update:
           errors:
             update: "Error during category update"
+      category_properties:
+        create:
+          errors:
+            creation: "Error during category property creation"
+        update:
+          errors:
+            update: "Error during category property update"
     v1:
       user:
         create:
