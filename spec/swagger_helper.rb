@@ -175,6 +175,20 @@ RSpec.configure do |config|
               ability: { type: :string, example: Ability.available.first, enum: Ability.available }
             },
             required: %i[ability]
+          },
+          category: {
+            type: :object,
+            properties: {
+              category: {
+                type: :object,
+                properties: {
+                  name: { type: :string, example: Faker::Commerce.department },
+                  uri_name: { type: :string, example: Faker::Commerce.department.parameterize }
+                },
+                required: %i[name uri_name]
+              }
+            },
+            required: %i[category]
           }
         },
         securitySchemes: {

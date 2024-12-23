@@ -29,6 +29,13 @@ en:
         switch_ability:
           errors:
             unknown_ability: "Unknown ability name"
+      categories:
+        create:
+          errors:
+            creation: "Error during category creation"
+        update:
+          errors:
+            update: "Error during category update"
     v1:
       user:
         create:

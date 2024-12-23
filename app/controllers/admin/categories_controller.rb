@@ -20,9 +20,27 @@ class Admin::CategoriesController < AdminController
   end
 
   def create
+    @category = Category.new(category_params)
+
+    if @category.save
+      render :show, status: :created
+    else
+      render json: { status: 422,
+                     error: I18n.t("controllers.admin.categories.create.errors.creation"),
+                     fields: @category.errors },
+             status: :unprocessable_entity
+    end
   end
 
   def update
+    if @category.update(category_params)
+      render :show
+    else
+      render json: { status: 422,
+                     error: I18n.t("controllers.admin.categories.update.errors.update"),
+                     fields: @category.errors },
+             status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -30,6 +48,10 @@ class Admin::CategoriesController < AdminController
   end
 
   private
+
+  def category_params
+    params.expect(category: [ :name, :uri_name ])
+  end
 
   def order_params
     %i[name]
