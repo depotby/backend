@@ -16,7 +16,7 @@ RSpec.configure do |config|
   # the root example_group in your specs, e.g. describe '...', openapi_spec: 'v2/swagger.json'
   config.openapi_specs = {
     'v1/swagger.yaml' => {
-      openapi: '3.0.1',
+      openapi: '3.1.1',
       info: {
         title: 'API V1',
         version: 'v1'
@@ -118,9 +118,9 @@ RSpec.configure do |config|
       }
     },
     'admin/swagger.yaml' => {
-      openapi: '3.0.1',
+      openapi: '3.1.1',
       info: {
-        title: 'API V1',
+        title: 'API Admin',
         version: 'v1'
       },
       servers: [
