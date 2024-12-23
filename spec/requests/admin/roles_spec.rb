@@ -1,9 +1,5 @@
 require 'swagger_helper'
 
-# controller :roles do
-#   post "roles/:id/abilities", action: :switch_ability
-# end
-
 describe 'Roles API', type: :request, openapi_spec: 'admin/swagger.yaml' do
   let(:Authorization) do
     create(:admin_authentication_with_all_abilities).generate_token_for(:authorization)
