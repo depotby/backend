@@ -5,15 +5,13 @@ ARG RUBY_VERSION=3.3.6
 
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS development
 
+ENV RAILS_ENV="development"
 ENV RSWAG_DRY_RUN=0
 
 WORKDIR /rails
 
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config curl libjemalloc2 libvips postgresql-client && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
-
-ENV RAILS_ENV="development"
+RUN apt-get update
+RUN apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config curl libjemalloc2 libvips postgresql-client
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
