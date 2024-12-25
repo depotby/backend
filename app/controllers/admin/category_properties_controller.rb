@@ -5,7 +5,7 @@ class Admin::CategoryPropertiesController < AdminController
   before_action :set_category_property, only: %i[show update destroy]
 
   def index
-    @category_properties = @category.category_properties
+    @category_properties = @category.category_properties.includes(:category_property_options)
   end
 
   def create

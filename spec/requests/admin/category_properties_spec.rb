@@ -23,7 +23,7 @@ describe 'Category Properties API', type: :request, openapi_spec: 'admin/swagger
 
       response 200, 'ok' do
         before do
-          create_list(:category_property, 3, category:)
+          create(:category_property, category:)
         end
 
         after { |example| write_response_example(example, response) }
