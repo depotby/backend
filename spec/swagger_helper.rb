@@ -203,6 +203,19 @@ RSpec.configure do |config|
               }
             },
             required: %i[category_property]
+          },
+          category_property_option: {
+            type: :object,
+            properties: {
+              category_property_option: {
+                type: :object,
+                properties: {
+                  variant: { type: :string, example: 'Green' }
+                },
+                required: %i[variant]
+              }
+            },
+            required: %i[category_property_option]
           }
         },
         securitySchemes: {

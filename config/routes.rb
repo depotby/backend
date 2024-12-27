@@ -48,6 +48,13 @@ Rails.application.routes.draw do
         put "categories/:category_id/properties/:property_id", action: :update
         delete "categories/:category_id/properties/:property_id", action: :destroy
       end
+
+      controller :category_property_options do
+        post "categories/:category_id/properties/:property_id/options", action: :create
+        put "categories/:category_id/properties/:property_id/options/:option_id", action: :update
+        delete "categories/:category_id/properties/:property_id/options/:option_id",
+               action: :destroy
+      end
     end
 
     namespace :v1 do
