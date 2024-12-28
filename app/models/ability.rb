@@ -9,7 +9,11 @@ class Ability < ApplicationRecord
                  CATEGORY:CREATE
                  CATEGORY:READ
                  CATEGORY:UPDATE
-                 CATEGORY:DELETE].freeze
+                 CATEGORY:DELETE
+                 PRODUCT:CREATE
+                 PRODUCT:READ
+                 PRODUCT:UPDATE
+                 PRODUCT:DELETE].freeze
 
   has_many :role_abilities, dependent: :destroy
   has_many :roles, through: :role_abilities
