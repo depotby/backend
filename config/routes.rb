@@ -55,6 +55,14 @@ Rails.application.routes.draw do
         delete "categories/:category_id/properties/:property_id/options/:option_id",
                action: :destroy
       end
+
+      controller :products do
+        get "products", action: :index
+        post "products", action: :create
+        get "products/:id", action: :show
+        put "products/:id", action: :update
+        delete "products/:id", action: :destroy
+      end
     end
 
     namespace :v1 do
