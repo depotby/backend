@@ -60,7 +60,7 @@ describe 'Categories API', type: :request, openapi_spec: 'admin/swagger.yaml' do
 
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
-        let(:category) { { category: attributes_for(:category) } }
+        let(:category) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -69,7 +69,7 @@ describe 'Categories API', type: :request, openapi_spec: 'admin/swagger.yaml' do
 
       response 403, 'forbidden' do
         let(:Authorization) { authorization_without_abilities }
-        let(:category) { { category: attributes_for(:category) } }
+        let(:category) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -144,7 +144,7 @@ describe 'Categories API', type: :request, openapi_spec: 'admin/swagger.yaml' do
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
         let(:id) { Faker::Internet.uuid }
-        let(:category) { { category: attributes_for(:category) } }
+        let(:category) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -154,7 +154,7 @@ describe 'Categories API', type: :request, openapi_spec: 'admin/swagger.yaml' do
       response 403, 'forbidden' do
         let(:Authorization) { authorization_without_abilities }
         let(:id) { Faker::Internet.uuid }
-        let(:category) { { category: attributes_for(:category) } }
+        let(:category) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -163,7 +163,7 @@ describe 'Categories API', type: :request, openapi_spec: 'admin/swagger.yaml' do
 
       response 404, 'not found' do
         let(:id) { Faker::Internet.uuid }
-        let(:category) { { category: attributes_for(:category) } }
+        let(:category) { nil }
 
         after { |example| write_response_example(example, response) }
 

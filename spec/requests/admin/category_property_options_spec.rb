@@ -38,9 +38,7 @@ describe 'Category Property Options API', type: :request, openapi_spec: 'admin/s
 
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
-        let(:category_property_option) do
-          { category_property_option: attributes_for(:category_property_option) }
-        end
+        let(:category_property_option) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -49,20 +47,7 @@ describe 'Category Property Options API', type: :request, openapi_spec: 'admin/s
 
       response 403, 'forbidden' do
         let(:Authorization) { authorization_without_abilities }
-        let(:category_property_option) do
-          { category_property_option: attributes_for(:category_property_option) }
-        end
-
-        after { |example| write_response_example(example, response) }
-
-        run_test!
-      end
-
-      response 403, 'forbidden' do
-        let(:Authorization) { authorization_without_abilities }
-        let(:category_property_option) do
-          { category_property_option: attributes_for(:category_property_option) }
-        end
+        let(:category_property_option) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -71,9 +56,7 @@ describe 'Category Property Options API', type: :request, openapi_spec: 'admin/s
 
       response 404, 'not found' do
         let(:category_id) { Faker::Internet.uuid }
-        let(:category_property_option) do
-          { category_property_option: attributes_for(:category_property_option) }
-        end
+        let(:category_property_option) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -81,9 +64,7 @@ describe 'Category Property Options API', type: :request, openapi_spec: 'admin/s
       end
 
       response 422, 'unprocessable content' do
-        let(:category_property_option) do
-          { category_property_option: { variant: nil } }
-        end
+        let(:category_property_option) { { category_property_option: { variant: nil } } }
 
         after { |example| write_response_example(example, response) }
 
@@ -115,9 +96,7 @@ describe 'Category Property Options API', type: :request, openapi_spec: 'admin/s
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
         let(:option_id) { Faker::Internet.uuid }
-        let(:category_property_option) do
-          { category_property_option: attributes_for(:category_property_option) }
-        end
+        let(:category_property_option) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -127,9 +106,7 @@ describe 'Category Property Options API', type: :request, openapi_spec: 'admin/s
       response 403, 'forbidden' do
         let(:Authorization) { authorization_without_abilities }
         let(:option_id) { Faker::Internet.uuid }
-        let(:category_property_option) do
-          { category_property_option: attributes_for(:category_property_option) }
-        end
+        let(:category_property_option) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -138,9 +115,7 @@ describe 'Category Property Options API', type: :request, openapi_spec: 'admin/s
 
       response 404, 'not found' do
         let(:option_id) { Faker::Internet.uuid }
-        let(:category_property_option) do
-          { category_property_option: attributes_for(:category_property_option) }
-        end
+        let(:category_property_option) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -149,9 +124,7 @@ describe 'Category Property Options API', type: :request, openapi_spec: 'admin/s
 
       response 422, 'unprocessable content' do
         let(:option_id) { create(:category_property_option, category_property:).id }
-        let(:category_property_option) do
-          { category_property_option: { variant: nil } }
-        end
+        let(:category_property_option) { { category_property_option: { variant: nil } } }
 
         after { |example| write_response_example(example, response) }
 

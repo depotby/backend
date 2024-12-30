@@ -72,7 +72,7 @@ describe 'Category Properties API', type: :request, openapi_spec: 'admin/swagger
 
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
-        let(:category_property) { { category_property: attributes_for(:category_property) } }
+        let(:category_property) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -81,16 +81,7 @@ describe 'Category Properties API', type: :request, openapi_spec: 'admin/swagger
 
       response 403, 'forbidden' do
         let(:Authorization) { authorization_without_abilities }
-        let(:category_property) { { category_property: attributes_for(:category_property) } }
-
-        after { |example| write_response_example(example, response) }
-
-        run_test!
-      end
-
-      response 403, 'forbidden' do
-        let(:Authorization) { authorization_without_abilities }
-        let(:category_property) { { category_property: attributes_for(:category_property) } }
+        let(:category_property) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -99,7 +90,7 @@ describe 'Category Properties API', type: :request, openapi_spec: 'admin/swagger
 
       response 404, 'not found' do
         let(:category_id) { Faker::Internet.uuid }
-        let(:category_property) { { category_property: attributes_for(:category_property) } }
+        let(:category_property) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -176,7 +167,7 @@ describe 'Category Properties API', type: :request, openapi_spec: 'admin/swagger
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
         let(:property_id) { Faker::Internet.uuid }
-        let(:category_property) { { category_property: attributes_for(:category_property) } }
+        let(:category_property) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -186,7 +177,7 @@ describe 'Category Properties API', type: :request, openapi_spec: 'admin/swagger
       response 403, 'forbidden' do
         let(:Authorization) { authorization_without_abilities }
         let(:property_id) { Faker::Internet.uuid }
-        let(:category_property) { { category_property: attributes_for(:category_property) } }
+        let(:category_property) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -195,7 +186,7 @@ describe 'Category Properties API', type: :request, openapi_spec: 'admin/swagger
 
       response 404, 'not found' do
         let(:property_id) { Faker::Internet.uuid }
-        let(:category_property) { { category_property: attributes_for(:category_property) } }
+        let(:category_property) { nil }
 
         after { |example| write_response_example(example, response) }
 

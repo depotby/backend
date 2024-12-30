@@ -56,7 +56,7 @@ describe 'Roles API', type: :request, openapi_spec: 'admin/swagger.yaml' do
 
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
-        let(:role) { { role: attributes_for(:role) } }
+        let(:role) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -65,7 +65,7 @@ describe 'Roles API', type: :request, openapi_spec: 'admin/swagger.yaml' do
 
       response 403, 'forbidden' do
         let(:Authorization) { authorization_without_abilities }
-        let(:role) { { role: attributes_for(:role) } }
+        let(:role) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -140,7 +140,7 @@ describe 'Roles API', type: :request, openapi_spec: 'admin/swagger.yaml' do
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
         let(:id) { Faker::Internet.uuid }
-        let(:role) { { role: attributes_for(:role) } }
+        let(:role) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -150,7 +150,7 @@ describe 'Roles API', type: :request, openapi_spec: 'admin/swagger.yaml' do
       response 403, 'forbidden' do
         let(:Authorization) { authorization_without_abilities }
         let(:id) { Faker::Internet.uuid }
-        let(:role) { { role: attributes_for(:role) } }
+        let(:role) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -159,7 +159,7 @@ describe 'Roles API', type: :request, openapi_spec: 'admin/swagger.yaml' do
 
       response 404, 'not found' do
         let(:id) { Faker::Internet.uuid }
-        let(:role) { { role: attributes_for(:role) } }
+        let(:role) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -235,7 +235,7 @@ describe 'Roles API', type: :request, openapi_spec: 'admin/swagger.yaml' do
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
         let(:id) { Faker::Internet.uuid }
-        let(:role_ability) { { ability: Ability.available.sample } }
+        let(:role_ability) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -245,7 +245,7 @@ describe 'Roles API', type: :request, openapi_spec: 'admin/swagger.yaml' do
       response 403, 'forbidden' do
         let(:Authorization) { authorization_without_abilities }
         let(:id) { Faker::Internet.uuid }
-        let(:role_ability) { { ability: Ability.available.sample } }
+        let(:role_ability) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -254,7 +254,7 @@ describe 'Roles API', type: :request, openapi_spec: 'admin/swagger.yaml' do
 
       response 404, 'not found' do
         let(:id) { Faker::Internet.uuid }
-        let(:role_ability) { { ability: Ability.available.sample } }
+        let(:role_ability) { nil }
 
         after { |example| write_response_example(example, response) }
 

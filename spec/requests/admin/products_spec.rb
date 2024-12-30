@@ -49,7 +49,7 @@ describe 'Products API', type: :request, openapi_spec: 'admin/swagger.yaml' do
     post 'Create new product' do
       security [ authorization_header: [] ]
       parameter name: :product, in: :body,
-                schema: { '$ref' => '#/components/schemas/product' }
+                schema: { '$ref' => '#/components/schemas/new_product' }
 
       response 201, 'created' do
         let(:product) { { product: attributes_for(:product).merge({ category_id: category.id }) } }
@@ -61,7 +61,7 @@ describe 'Products API', type: :request, openapi_spec: 'admin/swagger.yaml' do
 
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
-        let(:product) { { product: attributes_for(:product) } }
+        let(:product) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -70,7 +70,7 @@ describe 'Products API', type: :request, openapi_spec: 'admin/swagger.yaml' do
 
       response 403, 'forbidden' do
         let(:Authorization) { authorization_without_abilities }
-        let(:product) { { product: attributes_for(:product) } }
+        let(:product) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -78,7 +78,7 @@ describe 'Products API', type: :request, openapi_spec: 'admin/swagger.yaml' do
       end
 
       response 422, 'unprocessable content' do
-        let(:product) { { product: { name: nil, uri_name: nil } } }
+        let(:product) { { product: { category_id: nil, name: nil, uri_name: nil } } }
 
         after { |example| write_response_example(example, response) }
 
@@ -131,7 +131,7 @@ describe 'Products API', type: :request, openapi_spec: 'admin/swagger.yaml' do
       security [ authorization_header: [] ]
       parameter name: :id, in: :path, type: :string
       parameter name: :product, in: :body,
-                schema: { '$ref' => '#/components/schemas/product' }
+                schema: { '$ref' => '#/components/schemas/updated_product' }
 
       response 200, 'ok' do
         let(:id) { create(:product).id }
@@ -145,7 +145,7 @@ describe 'Products API', type: :request, openapi_spec: 'admin/swagger.yaml' do
       response 401, 'unauthorized' do
         let(:Authorization) { nil }
         let(:id) { Faker::Internet.uuid }
-        let(:product) { { product: attributes_for(:product) } }
+        let(:product) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -155,7 +155,7 @@ describe 'Products API', type: :request, openapi_spec: 'admin/swagger.yaml' do
       response 403, 'forbidden' do
         let(:Authorization) { authorization_without_abilities }
         let(:id) { Faker::Internet.uuid }
-        let(:product) { { product: attributes_for(:product) } }
+        let(:product) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -164,7 +164,7 @@ describe 'Products API', type: :request, openapi_spec: 'admin/swagger.yaml' do
 
       response 404, 'not found' do
         let(:id) { Faker::Internet.uuid }
-        let(:product) { { product: attributes_for(:product) } }
+        let(:product) { nil }
 
         after { |example| write_response_example(example, response) }
 
@@ -173,7 +173,7 @@ describe 'Products API', type: :request, openapi_spec: 'admin/swagger.yaml' do
 
       response 422, 'unprocessable content' do
         let(:id) { create(:product).id }
-        let(:product) { { product: { name: nil, uri_name: nil } } }
+        let(:product) { { product: { category_id: nil, name: nil, uri_name: nil } } }
 
         after { |example| write_response_example(example, response) }
 

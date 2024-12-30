@@ -217,7 +217,22 @@ RSpec.configure do |config|
             },
             required: %i[category_property_option]
           },
-          product: {
+          new_product: {
+            type: :object,
+            properties: {
+              product: {
+                type: :object,
+                properties: {
+                  category_id: { type: :string, example: Faker::Internet.uuid },
+                  name: { type: :string, example: 'Apple shampoo' },
+                  uri_name: { type: :string, example: 'apple-shampoo' }
+                },
+                required: %i[category_id name uri_name]
+              }
+            },
+            required: %i[product]
+          },
+          updated_product: {
             type: :object,
             properties: {
               product: {
