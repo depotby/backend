@@ -57,6 +57,10 @@ en:
         update:
           errors:
             update: "Error during product update"
+      product_price:
+        create:
+          errors:
+            creation: "Error during new product price setup"
     v1:
       user:
         create:

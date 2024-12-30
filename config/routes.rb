@@ -63,6 +63,10 @@ Rails.application.routes.draw do
         put "/:id", action: :update
         delete "/:id", action: :destroy
       end
+
+      scope "products/:id/prices", controller: :product_prices do
+        post "/", action: :create
+      end
     end
 
     namespace :v1 do

@@ -8,7 +8,7 @@ class Admin::ProductsController < AdminController
   before_action :set_product, only: %i[show update destroy]
 
   def index
-    @pagination, @products = paginate(Product.all)
+    @pagination, @products = paginate(Product.includes(:product_prices).all)
   end
 
   def create

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_29_110137) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_29_120914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -113,6 +113,15 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_29_110137) do
     t.index ["product_id"], name: "index_product_category_property_options_on_product_id"
   end
 
+  create_table "product_prices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "product_id", null: false
+    t.decimal "amount", precision: 12, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_prices_on_product_id"
+    t.check_constraint "amount > 0::numeric", name: "non_negative_or_zero_product_price"
+  end
+
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "category_id", null: false
     t.string "name", null: false
@@ -168,6 +177,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_29_110137) do
   add_foreign_key "category_property_options", "category_properties"
   add_foreign_key "product_category_property_options", "category_property_options"
   add_foreign_key "product_category_property_options", "products"
+  add_foreign_key "product_prices", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "role_abilities", "abilities"
   add_foreign_key "role_abilities", "roles"

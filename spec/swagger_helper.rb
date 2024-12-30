@@ -246,6 +246,19 @@ RSpec.configure do |config|
               }
             },
             required: %i[product]
+          },
+          product_price: {
+            type: :object,
+            properties: {
+              product_price: {
+                type: :object,
+                properties: {
+                  amount: { type: %i[integer string double], example: '5423.56' }
+                },
+                required: %i[amount]
+              }
+            },
+            required: %i[product_price]
           }
         },
         securitySchemes: {
