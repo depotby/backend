@@ -5,8 +5,6 @@ class Admin::ProductPricesController < AdminController
   def create
     @product_price = @product.product_prices.new(price_params)
 
-    # render json: { new: @product_price.amount, old: @product.current_product_price.amount }, status: 418
-
     if same_amount?
       @product_price = @product.current_product_price
       render :show
