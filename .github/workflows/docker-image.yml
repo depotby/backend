@@ -12,7 +12,7 @@ concurrency:
 jobs:
   build:
     if: github.actor != 'dependabot[bot]'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, arm64]
 
     steps:
       - name: Checkout
@@ -42,7 +42,7 @@ jobs:
           cache-to: type=gha,mode=max
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, arm64]
     needs: build
 
     steps:
