@@ -24,7 +24,7 @@ describe 'Product Prices API', type: :request, openapi_spec: 'admin/swagger.yaml
                 schema: { '$ref' => '#/components/schemas/product_price' }
 
       response 200, 'ok' do
-        let(:product_price) { { product_price: { amount: product.current_product_price.amount } } }
+        let(:product_price) { { product_price: { amount: product.latest_product_price.amount } } }
 
         after { |example| write_response_example(example, response) }
 
