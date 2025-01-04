@@ -12,7 +12,7 @@ module Orderable
   end
 
   def order_direction
-    params[:order_direction]&.downcase&.to_sym
+    params[:order_direction]&.upcase&.to_sym
   end
 
   # You must override this method in controller
@@ -21,6 +21,6 @@ module Orderable
   end
 
   def order_directions
-    %i[asc desc]
+    %i[ASC DESC]
   end
 end
