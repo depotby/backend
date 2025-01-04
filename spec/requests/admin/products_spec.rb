@@ -18,6 +18,13 @@ describe 'Products API', type: :request, openapi_spec: 'admin/swagger.yaml' do
   path '/admin/products' do
     get 'Get products list' do
       security [ authorization_header: [] ]
+      parameter name: :order_param, in: :query, type: :string, required: false,
+                description: 'Param name to order by',
+                enum: { name: 'name', uri_name: 'URI name', price: 'latest price of product',
+                        created_at: 'date of creating', updated_at: 'date of last update' }
+      parameter name: :order_direction, in: :query, type: :string, required: false,
+                description: 'Order direction',
+                enum: { asc: 'ascending order', desc: 'descending order' }
 
       response 200, 'ok' do
         before do
