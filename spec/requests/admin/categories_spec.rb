@@ -17,6 +17,12 @@ describe 'Categories API', type: :request, openapi_spec: 'admin/swagger.yaml' do
   path '/admin/categories' do
     get 'Get categories list' do
       security [ authorization_header: [] ]
+      parameter name: :order_param, in: :query, type: :string, required: false,
+                description: 'Param name to order by',
+                enum: { name: 'name' }
+      parameter name: :order_direction, in: :query, type: :string, required: false,
+                description: 'Order direction',
+                enum: { asc: 'ascending order', desc: 'descending order' }
 
       response 200, 'ok' do
         before do
