@@ -6,7 +6,7 @@ class Admin::ProductPricesController < AdminController
     @product_price = @product.product_prices.new(price_params)
 
     if same_amount?
-      @product_price = @product.current_product_price
+      @product_price = @product.latest_product_price
       render :show
     elsif @product_price.save
       render :show, status: :created
@@ -21,7 +21,7 @@ class Admin::ProductPricesController < AdminController
   private
 
   def same_amount?
-    @product.current_product_price&.amount == @product_price.amount
+    @product.latest_product_price&.amount == @product_price.amount
   end
 
   def price_params

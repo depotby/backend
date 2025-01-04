@@ -115,10 +115,12 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_29_120914) do
 
   create_table "product_prices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "product_id", null: false
+    t.boolean "latest", default: true, null: false
     t.decimal "amount", precision: 12, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_product_prices_on_product_id"
+    t.index ["product_id"], name: "index_product_prices_on_product_id_and_latest_true", unique: true, where: "latest"
     t.check_constraint "amount > 0::numeric", name: "non_negative_or_zero_product_price"
   end
 
