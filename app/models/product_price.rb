@@ -5,6 +5,8 @@ class ProductPrice < ApplicationRecord
 
   before_save :unset_previous_latest
 
+  scope :latest, -> { where(latest: true) }
+
   private
 
   def unset_previous_latest
