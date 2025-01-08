@@ -10,19 +10,15 @@ class Admin::ProductsController < AdminController
 
   def index
     if order_correct? && (order_param == :price)
-      filter_rule = "product_prices.latest IS NULL OR product_prices.latest = true"
-      nulls_position = order_direction == :ASC ? "FIRST" : "LAST"
-      order = "product_prices.amount #{order_direction} NULLS #{nulls_position}"
-      @pagination, @products = paginate(Product.left_joins(:product_prices)
-                                               .where(filter_rule)
-                                               .order(order)
-                                               .includes(:product_prices))
+      @pagination, @products = paginate(Product.left_joins(:latest_product_price)
+                                               .order(order_by_price)
+                                               .includes(:latest_product_price))
     elsif order_correct?
       @pagination, @products = paginate(Product.order(order_param => order_direction)
-                                               .includes(:product_prices))
+                                               .includes(:latest_product_price))
     else
       @pagination, @products = paginate(Product.order(created_at: :desc)
-                                               .includes(:product_prices))
+                                               .includes(:latest_product_price))
     end
   end
 
@@ -56,6 +52,10 @@ class Admin::ProductsController < AdminController
   end
 
   private
+
+  def order_by_price
+    "product_prices.amount #{order_direction} NULLS #{order_direction == :ASC ? "FIRST" : "LAST"}"
+  end
 
   def order_params
     %i[name uri_name price created_at updated_at]
