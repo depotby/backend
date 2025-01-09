@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       scope :users, controller: :users do
         get "/", action: :index
         get "/:id", action: :show
+        post "/:id/switch-type", action: :switch_type
       end
 
       scope :roles, controller: :roles do
