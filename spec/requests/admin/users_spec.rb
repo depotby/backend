@@ -82,6 +82,14 @@ describe 'Users API', type: :request, openapi_spec: 'admin/swagger.yaml' do
 
         run_test!
       end
+
+      response 404, 'not found' do
+        let(:id) { Faker::Internet.uuid }
+
+        after { |example| write_response_example(example, response) }
+
+        run_test!
+      end
     end
   end
 end
