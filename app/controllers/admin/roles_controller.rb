@@ -1,6 +1,4 @@
 class Admin::RolesController < AdminController
-  include Paginable
-
   before_action -> { check_ability("ROLE:READ") }, only: %i[index show]
   before_action -> { check_ability("ROLE:CREATE") }, only: %i[create]
   before_action -> { check_ability("ROLE:UPDATE") }, only: %i[update switch_ability]
@@ -8,7 +6,7 @@ class Admin::RolesController < AdminController
   before_action :set_role, only: %i[show update destroy switch_ability]
 
   def index
-    @pagination, @roles = paginate(Role.all)
+    @roles = Role.all
   end
 
   def create
