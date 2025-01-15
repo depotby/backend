@@ -11,7 +11,7 @@ ENV RSWAG_DRY_RUN=0
 WORKDIR /rails
 
 RUN apt-get update
-RUN apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config curl libjemalloc2 libvips postgresql-client
+RUN apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config libyaml-dev curl libjemalloc2 libvips postgresql-client
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
@@ -45,7 +45,7 @@ FROM base AS build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config libyaml-dev && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install application gems
