@@ -1,0 +1,74 @@
+ru:
+  models:
+    user:
+      validations:
+        email:
+          wrong_email_format: "не является допустимым email"
+
+  controllers:
+    concerns:
+      authenticatable:
+        create:
+          error: "Неправильный email или пароль"
+        refresh:
+          error: "Токен аутентификации не найден"
+    application:
+      authorization:
+        unauthorized: "Вы не авторизованы для выполнения этого действия"
+    admin:
+      check_ability:
+        errors:
+          forbidden: "У вас нет доступа к этому ресурсу"
+      roles:
+        create:
+          errors:
+            creation: "Произошла ошибка при создании роли"
+        update:
+          errors:
+            update: "Произошла ошибка при обновлении роли"
+        switch_ability:
+          errors:
+            unknown_ability: "Указанное название действия неизвестно"
+      categories:
+        create:
+          errors:
+            creation: "Произошла ошибка при создании категории"
+        update:
+          errors:
+            update: "Произошла ошибка при обновлении категории"
+      category_properties:
+        create:
+          errors:
+            creation: "Произошла ошибка при создании свойства категории"
+        update:
+          errors:
+            update: "Произошла ошибка при обновлении свойства категории"
+      category_property_options:
+        create:
+          errors:
+            creation: "Произошла ошибка при создании опции свойства категории"
+        update:
+          errors:
+            update: "Произошла ошибка при обновлении опции свойства категории"
+      products:
+        create:
+          errors:
+            creation: "Произошла ошибка при создании товара"
+        update:
+          errors:
+            update: "Произошла ошибка при обновлении товара"
+      product_prices:
+        create:
+          errors:
+            creation: "Произошла ошибка при настройке цены товара"
+    v1:
+      users:
+        create:
+          error: "Произошла ошибка при создании пользователя"
+        update:
+          error: "Произошла ошибка при обновлении пользователя"
+      addresses:
+        create:
+          error: "Произошла ошибка при создании адреса"
+        update:
+          error: "Произошла ошибка при обновлении адреса"

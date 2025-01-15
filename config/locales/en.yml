@@ -9,66 +9,66 @@ en:
     concerns:
       authenticatable:
         create:
-          error: "Wrong mail or password"
+          error: "Invalid email or password"
         refresh:
-          error: "Authentication not found"
+          error: "Authentication token not found"
     application:
       authorization:
-        unauthorized: "Unauthorized"
+        unauthorized: "You are not authorized to perform this action"
     admin:
       check_ability:
         errors:
-          forbidden: "Forbidden"
+          forbidden: "You do not have permission to access this resource"
       roles:
         create:
           errors:
-            creation: "Error during role creation"
+            creation: "An error occurred while creating the role"
         update:
           errors:
-            update: "Error during role update"
+            update: "An error occurred while updating the role"
         switch_ability:
           errors:
-            unknown_ability: "Unknown ability name"
+            unknown_ability: "The provided ability name is unknown"
       categories:
         create:
           errors:
-            creation: "Error during category creation"
+            creation: "An error occurred while creating the category"
         update:
           errors:
-            update: "Error during category update"
+            update: "An error occurred while updating the category"
       category_properties:
         create:
           errors:
-            creation: "Error during category property creation"
+            creation: "An error occurred while creating the category property"
         update:
           errors:
-            update: "Error during category property update"
+            update: "An error occurred while updating the category property"
       category_property_options:
         create:
           errors:
-            creation: "Error during category property option creation"
+            creation: "An error occurred while creating the category property option"
         update:
           errors:
-            update: "Error during category property option update"
+            update: "An error occurred while updating the category property option"
       products:
         create:
           errors:
-            creation: "Error during product creation"
+            creation: "An error occurred while creating the product"
         update:
           errors:
-            update: "Error during product update"
+            update: "An error occurred while updating the product"
       product_price:
         create:
           errors:
-            creation: "Error during new product price setup"
+            creation: "An error occurred while setting up the product price"
     v1:
-      user:
+      users:
         create:
-          error: "Error during user creation"
+          error: "An error occurred while creating the user"
         update:
-          error: "Error during user update"
+          error: "An error occurred while updating the user"
       addresses:
         create:
-          error: "Error during address creation"
+          error: "An error occurred while creating the address"
         update:
-          error: "Error during address update"
+          error: "An error occurred while updating the address"
