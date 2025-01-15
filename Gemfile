@@ -16,14 +16,14 @@ gem "solid_cache"
 gem "solid_queue"
 gem "thruster", require: false
 
+group :staging, :development, :test do
+  gem "factory_bot_rails"
+  gem "faker"
+  gem "rspec-rails"
+end
+
 group :development, :test do
   gem "brakeman", require: false
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-  gem "faker"
   gem "rubocop-rails-omakase", require: false
-end
-
-group :test do
-  gem "factory_bot_rails"
-  gem "rspec-rails"
 end
