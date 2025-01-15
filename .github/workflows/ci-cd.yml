@@ -1,4 +1,4 @@
-name: Docker Image CI/CD
+name: CI/CD
 
 on:
   workflow_dispatch:
@@ -35,8 +35,8 @@ jobs:
           platforms: linux/arm64
           push: true
           tags: ${{ vars.DOCKER_REGISTRY_DOMAIN }}/${{ vars.DOCKER_IMAGE_NAME }}:production
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=registry,ref=${{ vars.DOCKER_IMAGE_NAME }}:buildcache
+          cache-to: type=registry,ref=${{ vars.DOCKER_IMAGE_NAME }}:buildcache,mode=max
 
   deploy:
     runs-on: [self-hosted, linux, arm64]
