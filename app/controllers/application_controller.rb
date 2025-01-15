@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::API
-  before_action :set_locale
+  around_action :switch_locale
 
   private
 
-  def set_locale
-    I18n.locale = locale_header if I18n.locale_available?(locale_header)
+  def switch_locale(&action)
+    locale = I18n.locale_available?(locale_header) ? locale_header : I18n.default_locale
+    I18n.with_locale(locale, &action)
   end
 
   def authorization
