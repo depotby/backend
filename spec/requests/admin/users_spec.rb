@@ -133,4 +133,50 @@ describe 'Users API', type: :request, openapi_spec: 'admin/swagger.yaml' do
       end
     end
   end
+
+  path '/admin/users/{id}/roles/{role_id}' do
+    post 'Switch user roles' do
+      security [ authorization_header: [] ]
+      parameter name: :id, in: :path, type: :string
+      parameter name: :role_id, in: :path, type: :string
+
+      response 200, 'ok' do
+        let(:id) { create(:employee_with_all_abilities).id }
+        let(:role_id) { create(:role).id }
+
+        after { |example| write_response_example(example, response) }
+
+        run_test!
+      end
+
+      response 401, 'unauthorized' do
+        let(:Authorization) { nil }
+        let(:id) { Faker::Internet.uuid }
+        let(:role_id) { Faker::Internet.uuid }
+
+        after { |example| write_response_example(example, response) }
+
+        run_test!
+      end
+
+      response 403, 'forbidden' do
+        let(:Authorization) { authorization_without_abilities }
+        let(:id) { Faker::Internet.uuid }
+        let(:role_id) { Faker::Internet.uuid }
+
+        after { |example| write_response_example(example, response) }
+
+        run_test!
+      end
+
+      response 404, 'not found' do
+        let(:id) { Faker::Internet.uuid }
+        let(:role_id) { Faker::Internet.uuid }
+
+        after { |example| write_response_example(example, response) }
+
+        run_test!
+      end
+    end
+  end
 end

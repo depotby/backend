@@ -4,7 +4,9 @@ class Admin::UsersController < AdminController
 
   before_action -> { check_ability("USER:READ") }, only: %i[index show]
   before_action -> { check_ability("USER_TYPE:UPDATE") }, only: %i[switch_type]
-  before_action :set_user, only: %i[show switch_type]
+  before_action -> { check_ability("USER_ROLES:UPDATE") }, only: %i[switch_role]
+  before_action :set_user, only: %i[show switch_type switch_role]
+  before_action :set_role, only: %i[switch_role]
 
   def index
     if order_correct?
@@ -30,6 +32,16 @@ class Admin::UsersController < AdminController
     render :show
   end
 
+  def switch_role
+    if @user.roles.exists?(@role.id)
+      @user.roles.destroy(@role)
+    else
+      @user.roles << @role
+    end
+
+    render :show
+  end
+
   private
 
   def order_params
@@ -38,5 +50,9 @@ class Admin::UsersController < AdminController
 
   def set_user
     @user = User.find(params.expect(:id))
+  end
+
+  def set_role
+    @role = Role.find(params.expect(:role_id))
   end
 end
