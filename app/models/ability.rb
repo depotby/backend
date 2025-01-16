@@ -2,6 +2,7 @@ class Ability < ApplicationRecord
   ABILITIES = %w[USER:READ
                  USER:UPDATE
                  USER_TYPE:UPDATE
+                 USER_ROLES:UPDATE
                  ROLE:CREATE
                  ROLE:READ
                  ROLE:UPDATE
