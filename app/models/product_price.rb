@@ -1,5 +1,5 @@
 class ProductPrice < ApplicationRecord
-  belongs_to :product
+  belongs_to :product, touch: true
 
   validates :amount, presence: true, numericality: { greater_than: 0 }
 

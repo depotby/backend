@@ -1,5 +1,5 @@
 class CategoryProperty < ApplicationRecord
-  belongs_to :category
+  belongs_to :category, touch: true
   has_many :category_property_options, dependent: :destroy
 
   validates :name, presence: true
